@@ -18,18 +18,33 @@ $sql = "INSERT INTO Persoon (Id
                             ,Voornaam
                             ,Tussenvoegsel
                             ,Achternaam
-                            ,Telefoonnummer)
+                            ,Telefoonnummer
+                            ,Straatnaam
+                            ,Huisnummer
+                            ,Woonplaats
+                            ,Postcode
+                            ,Landnaam)
         VALUES              (NULL
                             ,:firstname
                             ,:infix
                             ,:lastname
-                            ,:phone);";
+                            ,:phone
+                            ,:street
+                            ,:housenumber
+                            ,:city
+                            ,:zipcode
+                            ,:country);";
 // Maak de query gereed met de prepare-method van het $pdo-object
 $statement = $pdo->prepare($sql);
 $statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
 $statement->bindValue(':infix', $_POST['infix'], PDO::PARAM_STR);
 $statement->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
 $statement->bindValue(':phone', $_POST['phone'], PDO::PARAM_STR);
+$statement->bindValue(':street', $_POST['street'], PDO::PARAM_STR);
+$statement->bindValue(':housenumber', $_POST['housenumber'], PDO::PARAM_STR);
+$statement->bindValue(':city', $_POST['city'], PDO::PARAM_STR);
+$statement->bindValue(':zipcode', $_POST['zipcode'], PDO::PARAM_STR);
+$statement->bindValue(':country', $_POST['country'], PDO::PARAM_STR);
 // Vuur de query af op de database...
 $statement->execute();
 
